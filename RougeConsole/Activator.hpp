@@ -3,6 +3,7 @@
 
 #include <string>
 
+#include "Utils.hpp"
 #include "Coords.hpp"
 #include "CharSet.hpp"
 

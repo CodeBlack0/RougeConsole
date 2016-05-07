@@ -19,3 +19,8 @@ Activator * ActivatorList::getActivatorAt(Coords pos)
 	}
 	return new Activator();
 }
+
+std::vector<Activator*>* ActivatorList::getList()
+{
+	return &activators;
+}

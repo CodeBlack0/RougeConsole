@@ -24,7 +24,7 @@ char Map::getCoord(Coords coord)
 	return design.at(coord.y)[coord.x];
 }
 
-std::vector<std::string> Map::getlayout()
+std::vector<std::string> * Map::getlayout()
 {
-	return design;
+	return &design;
 }

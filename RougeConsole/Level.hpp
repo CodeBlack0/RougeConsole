@@ -28,6 +28,14 @@ public:
 private:
 	
 	void draw(WINDOW * screen);
+	void update(Player * p, int key);
+
+	void getDir(Player * p, int key);
+	void move(Player * p);
+	bool checkCollsion(Player * p);
+	bool checkActivatorCollsion(Player * p);
+
+	void printToMap(Player * p);
 
 	WINDOW * screen;
 	Map * layout;
@@ -37,7 +45,7 @@ private:
 	std::string name;
 	Coords size;
 	Coords startpos;
-
+	bool done;
 };
 
 #endif

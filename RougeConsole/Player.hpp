@@ -16,6 +16,11 @@ public:
 	Player();
 	Player(std::string path);
 
+	Coords *getPos();
+	void setPos(Coords newpos);
+
+	Coords dir;
+
 private:
 	
 	Coords pos;

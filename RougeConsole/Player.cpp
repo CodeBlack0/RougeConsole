@@ -43,4 +43,16 @@ Player::Player(std::string path)
 		}
 		i++;
 	}
+
+	dir = Coords(0, 0);
+}
+
+Coords * Player::getPos()
+{
+	return &pos;
+}
+
+void Player::setPos(Coords newpos)
+{
+	pos = newpos;
 }

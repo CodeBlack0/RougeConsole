@@ -2,10 +2,12 @@
 
 Level::Level()
 {
+	done = false;
 }
 
 Level::Level(std::string path)
 {
+	Level();
 	layout = new Map();
 	map = new Map();
 
@@ -50,10 +52,15 @@ Level::Level(std::string path)
 void Level::play(WINDOW * screen, Player * p)
 {
 	int ch;
+
+	*p->getPos() = startpos;
+
+	printToMap(p);
 	draw(screen);
 
 	while ((ch = getch()) != 'q')
 	{
+		update(p, ch);
 		draw(screen);
 		refresh();
 	}
@@ -68,10 +75,8 @@ void Level::draw(WINDOW * screen)
 {
 	wclear(screen);
 
-	//wprintw(screen, "\n");
-	for (auto line : map->getlayout())
+	for (auto line : *map->getlayout())
 	{
-		//wprintw(screen, " ");
 		for (auto pixel : line)
 		{
 			switch (pixel)
@@ -109,3 +114,79 @@ void Level::draw(WINDOW * screen)
 	box(screen, 0, 0);
 	wrefresh(screen);
 }
+
+void Level::update(Player * p, int key)
+{
+	getDir(p, key);
+	if (p->dir.x != 0 || p->dir.y != 0)
+		move(p);
+	printToMap(p);
+}
+
+void Level::getDir(Player * p, int key)
+{
+	p->dir = Coords(0, 0);
+
+	switch (key)
+	{
+	case 'W': 
+	case 'w':
+		p->dir.y = -1;
+		break;
+	case 'A': 
+	case 'a':
+		p->dir.x = -1;
+		break;
+	case 'S': 
+	case 's':
+		p->dir.y = 1;
+		break;
+	case 'D': 
+	case 'd':
+		p->dir.x = 1;
+		break;
+
+	default:
+		break;
+	}
+}
+
+void Level::move(Player * p)
+{
+	checkActivatorCollsion(p);
+	if (!checkCollsion(p))
+	{
+		p->setPos(Coords(p->getPos()->x + p->dir.x, p->getPos()->y + p->dir.y));
+	}
+}
+
+bool Level::checkCollsion(Player * p)
+{
+	if (layout->getCoord(Coords(p->getPos()->x + p->dir.x, p->getPos()->y + p->dir.y)) == '.')
+		return false;
+	return true;
+}
+
+bool Level::checkActivatorCollsion(Player * p)
+{
+	auto *ac = activators.getActivatorAt(Coords(p->getPos()->x + p->dir.x, p->getPos()->y + p->dir.y));
+	if (ac)
+	{
+		ac->trigger();
+		return true;
+	}
+	return false;
+}
+
+void Level::printToMap(Player * p)
+{
+	map = new Map(*layout);
+
+	for (auto it : *activators.getList())
+	{
+		map->setCoord(*it->getSelfPos(), *it->getSelfChar());
+		map->setCoord(*it->getTargetPos(), *it->getTargetChar());
+	}
+	map->setCoord(*p->getPos(), '@');
+}
+

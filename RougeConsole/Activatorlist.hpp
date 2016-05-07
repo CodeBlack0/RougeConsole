@@ -14,6 +14,7 @@ public:
 
 	void insert(Activator * ac);
 	Activator * getActivatorAt(Coords pos);
+	std::vector<Activator *> * getList();
 
 private:
 

@@ -16,7 +16,7 @@ public:
 	void insertline(std::string line);
 	void setCoord(Coords coord, char sym);
 	char getCoord(Coords coord);
-	std::vector<std::string> getlayout();
+	std::vector<std::string> * getlayout();
 
 private:
 
