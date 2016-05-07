@@ -21,7 +21,7 @@ private:
 	Player *p;
 	Dungeon *d;
 
-	WINDOW * mapscreen;
+	WINDOW mapscreen;
 	WINDOW GUIscreen;
 };
 

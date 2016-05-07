@@ -20,3 +20,8 @@ void Dungeon::play(WINDOW * screen, Player * p)
 	for (auto it : levels)
 		it->play(screen, p);
 }
+
+std::vector<Level*>* Dungeon::getLevels()
+{
+	return &levels;
+}

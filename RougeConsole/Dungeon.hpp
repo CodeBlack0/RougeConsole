@@ -15,6 +15,7 @@ public:
 	Dungeon(std::string path);
 
 	void play(WINDOW * screen, Player * p);
+	std::vector<Level *> * getLevels();
 
 private:
 

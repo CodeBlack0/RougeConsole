@@ -23,6 +23,8 @@ public:
 
 	void play(WINDOW * screen, Player * p);
 
+	Coords * getSize();
+
 private:
 	
 	void draw(WINDOW * screen);

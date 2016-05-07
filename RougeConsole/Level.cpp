@@ -1,4 +1,4 @@
-#include "Level.hpp"
+﻿#include "Level.hpp"
 
 Level::Level()
 {
@@ -50,6 +50,7 @@ Level::Level(std::string path)
 void Level::play(WINDOW * screen, Player * p)
 {
 	int ch;
+	draw(screen);
 
 	while ((ch = getch()) != 'q')
 	{
@@ -58,19 +59,27 @@ void Level::play(WINDOW * screen, Player * p)
 	}
 }
 
+Coords * Level::getSize()
+{
+	return &size;
+}
+
 void Level::draw(WINDOW * screen)
 {
 	wclear(screen);
+
+	//wprintw(screen, "\n");
 	for (auto line : map->getlayout())
 	{
+		//wprintw(screen, " ");
 		for (auto pixel : line)
 		{
 			switch (pixel)
 			{
 			case '#':
-				attron(A_NORMAL);
+				attron(A_NORMAL | COLOR_PAIR(6));
 				wprintw(screen, "%c", '#');
-				attroff(A_NORMAL);
+				attroff(A_NORMAL | COLOR_PAIR(6));
 				break;
 			case '.':
 				attron(A_DIM | COLOR_PAIR(5));
@@ -87,12 +96,16 @@ void Level::draw(WINDOW * screen)
 				wprintw(screen, "%c", '@');
 				attroff(A_BOLD | COLOR_PAIR(1));
 				break;
+			case '|': case '-': case '+':
+				//wprintw(screen, " ");
+				break;
 			default:
-				printw("%c", pixel);
+				wprintw(screen, "%c", pixel);
 				break;
 			}
 		}
 		wprintw(screen, "\n");
-		wrefresh(screen);
 	}
+	box(screen, 0, 0);
+	wrefresh(screen);
 }
