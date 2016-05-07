@@ -6,9 +6,12 @@ Level::Level()
 
 Level::Level(std::string path)
 {
-	std::ifstream file(path + ".gp");
+	layout = new Map();
+	map = new Map();
+
+	std::ifstream file(path + ".gl");
 	std::vector<std::string> data;
-	std::vector<std::string> * linedata;
+	std::vector<std::string> linedata;
 
 	/* get data from into vector */
 	std::string line;
@@ -18,18 +21,17 @@ Level::Level(std::string path)
 	file.close();
 
 	/* tokenize first line and extract data */
-	linedata = &slice(data.at(0), ';');
-	name = linedata->at(0);
-	size = Coords(std::stoi(linedata->at(1)), std::stoi(linedata->at(2)));
-	startpos = Coords(std::stoi(linedata->at(3)), std::stoi(linedata->at(4)));
-	data.erase(data.begin());
+	linedata = tokenize(data.at(0), ';');
+	name = linedata.at(0);
+	size = Coords(std::stoi(linedata.at(1)), std::stoi(linedata.at(2)));
+	startpos = Coords(std::stoi(linedata.at(3)), std::stoi(linedata.at(4)));
 
 	/* extracting layout data from corresponding lines */
-	std::vector<std::string> layoutdata(&data[0], &data[size.y - 1]);
-	for (auto it : layoutdata)
-		layout->insertline(it);
+	std::vector<std::string> layoutdata;
+	for (int i = 1; i < size.y; i++)
+		layout->insertline(data.at(i));
 	map = layout;
-	data.erase(data.begin() + size.y - 1);
+	data.erase(data.begin(), data.begin() + size.y);
 
 	/* extracting activator, item data from rest data */
 	for (auto it : data)
@@ -45,7 +47,7 @@ Level::Level(std::string path)
 	}
 }
 
-void Level::play(WINDOW * screen)
+void Level::play(WINDOW * screen, Player * p)
 {
 	int ch;
 
@@ -58,6 +60,7 @@ void Level::play(WINDOW * screen)
 
 void Level::draw(WINDOW * screen)
 {
+	wclear(screen);
 	for (auto line : map->getlayout())
 	{
 		for (auto pixel : line)
@@ -65,9 +68,9 @@ void Level::draw(WINDOW * screen)
 			switch (pixel)
 			{
 			case '#':
-				attron(A_NORMAL | COLOR_PAIR(6));
+				attron(A_NORMAL);
 				wprintw(screen, "%c", '#');
-				attroff(A_NORMAL | COLOR_PAIR(6));
+				attroff(A_NORMAL);
 				break;
 			case '.':
 				attron(A_DIM | COLOR_PAIR(5));
@@ -90,5 +93,6 @@ void Level::draw(WINDOW * screen)
 			}
 		}
 		wprintw(screen, "\n");
+		wrefresh(screen);
 	}
 }

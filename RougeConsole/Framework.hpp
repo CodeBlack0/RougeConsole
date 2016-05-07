@@ -12,7 +12,7 @@ public:
 
 	Framework();
 	Framework(std::string gamepath);
-	Framework(std::string ppath, std::string dpath);
+	Framework(std::string ppath, std::string dpath, WINDOW * mapScreen);
 
 	void play();
 
@@ -21,7 +21,7 @@ private:
 	Player *p;
 	Dungeon *d;
 
-	WINDOW mapscreen;
+	WINDOW * mapscreen;
 	WINDOW GUIscreen;
 };
 

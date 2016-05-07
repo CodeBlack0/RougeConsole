@@ -12,6 +12,7 @@
 #include "Activatorlist.hpp"
 #include "Item.hpp"
 #include "Utils.hpp"
+#include "Player.hpp"
 
 class Level
 {
@@ -20,7 +21,7 @@ public:
 	Level();
 	Level(std::string path);
 
-	void play(WINDOW * screen);
+	void play(WINDOW * screen, Player * p);
 
 private:
 	
