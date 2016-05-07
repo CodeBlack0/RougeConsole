@@ -162,7 +162,8 @@ void Level::move(Player * p)
 
 bool Level::checkCollsion(Player * p)
 {
-	if (layout->getCoord(Coords(p->getPos()->x + p->dir.x, p->getPos()->y + p->dir.y)) == '.')
+	char mapval = map->getCoord(Coords(p->getPos()->x + p->dir.x, p->getPos()->y + p->dir.y));
+	if (mapval != '#' && mapval != '%' && mapval != ' ')
 		return false;
 	return true;
 }
