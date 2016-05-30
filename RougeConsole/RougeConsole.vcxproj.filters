@@ -45,6 +45,12 @@
     <ClCompile Include="Utils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Itemlist.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework.hpp">
@@ -80,12 +86,18 @@
     <ClInclude Include="Utils.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Itemlist.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Player_A.gp">
       <Filter>Resource Files</Filter>
     </None>
     <None Include="Test_Dungeon_Level_A.gl">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Test_Dungeon_Level_B.gl">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

@@ -43,10 +43,15 @@ Level::Level(std::string path)
 		case 'A':
 			activators.insert(new Activator(it));
 			break;
+		case 'I':
+			items.insert(new Item(it));
+			break;
 		default:
 			break;
 		}
 	}
+
+	done = false;
 }
 
 void Level::play(WINDOW * screen, Player * p)
@@ -63,6 +68,8 @@ void Level::play(WINDOW * screen, Player * p)
 		update(p, ch);
 		draw(screen);
 		refresh();
+		if (done)
+			break;
 	}
 }
 
@@ -153,6 +160,7 @@ void Level::getDir(Player * p, int key)
 
 void Level::move(Player * p)
 {
+	checkItemCollsion(p);
 	checkActivatorCollsion(p);
 	if (!checkCollsion(p))
 	{
@@ -163,8 +171,11 @@ void Level::move(Player * p)
 bool Level::checkCollsion(Player * p)
 {
 	char mapval = map->getCoord(Coords(p->getPos()->x + p->dir.x, p->getPos()->y + p->dir.y));
+	if (mapval == 'O')
+		done = true;
 	if (mapval != '#' && mapval != '%' && mapval != ' ')
 		return false;
+
 	return true;
 }
 
@@ -179,6 +190,17 @@ bool Level::checkActivatorCollsion(Player * p)
 	return false;
 }
 
+bool Level::checkItemCollsion(Player * p)
+{
+	auto *it = items.getItemAt(Coords(p->getPos()->x + p->dir.x, p->getPos()->y + p->dir.y));
+	if (it)
+	{
+		it->trigger(p);
+		return true;
+	}
+	return false;
+}
+
 void Level::printToMap(Player * p)
 {
 	map = new Map(*layout);
@@ -188,6 +210,13 @@ void Level::printToMap(Player * p)
 		map->setCoord(*it->getSelfPos(), *it->getSelfChar());
 		map->setCoord(*it->getTargetPos(), *it->getTargetChar());
 	}
+
+	for (auto it : *items.getList())
+	{
+		if (*it->getSym() != '³')
+			map->setCoord(*it->getPos(), *it->getSym());
+	}
+
 	map->setCoord(*p->getPos(), '@');
 }
 

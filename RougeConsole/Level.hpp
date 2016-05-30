@@ -10,7 +10,7 @@
 #include "Coords.hpp"
 #include "Map.hpp"
 #include "Activatorlist.hpp"
-#include "Item.hpp"
+#include "ItemList.hpp"
 #include "Utils.hpp"
 #include "Player.hpp"
 
@@ -34,6 +34,7 @@ private:
 	void move(Player * p);
 	bool checkCollsion(Player * p);
 	bool checkActivatorCollsion(Player * p);
+	bool Level::checkItemCollsion(Player * p);
 
 	void printToMap(Player * p);
 
@@ -41,7 +42,7 @@ private:
 	Map * layout;
 	Map * map;
 	ActivatorList activators;
-	std::vector<Item *>	items;
+	ItemList items;
 	std::string name;
 	Coords size;
 	Coords startpos;

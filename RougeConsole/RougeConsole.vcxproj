@@ -159,6 +159,8 @@
     <ClCompile Include="CharSet.cpp" />
     <ClCompile Include="Dungeon.cpp" />
     <ClCompile Include="Framework.cpp" />
+    <ClCompile Include="Item.cpp" />
+    <ClCompile Include="Itemlist.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map.cpp" />
@@ -173,6 +175,7 @@
     <ClInclude Include="Dungeon.hpp" />
     <ClInclude Include="Framework.hpp" />
     <ClInclude Include="Item.hpp" />
+    <ClInclude Include="Itemlist.hpp" />
     <ClInclude Include="Level.hpp" />
     <ClInclude Include="Map.hpp" />
     <ClInclude Include="Player.hpp" />
@@ -181,6 +184,7 @@
   <ItemGroup>
     <None Include="Player_A.gp" />
     <None Include="Test_Dungeon_Level_A.gl" />
+    <None Include="Test_Dungeon_Level_B.gl" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Test_Dungeon.gd" />

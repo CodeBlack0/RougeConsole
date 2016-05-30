@@ -12,7 +12,7 @@ int main(int argc, char** argv)
 	WINDOW *mapwin;
 	mapwin = create_newwin(height, width, (LINES - height) / 2, (COLS - width) / 2);
 
-	Framework * fm = new Framework("Player_A", "Test_Dungeon", mapwin);
+	Framework * fm = new Framework("Player_A", "Test_Dungeon", stdscr);
 
 	fm->play();
 
