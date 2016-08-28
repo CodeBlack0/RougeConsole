@@ -56,3 +56,63 @@ void Player::setPos(Coords newpos)
 {
 	pos = newpos;
 }
+
+int Player::getHealth()
+{
+	return health;
+}
+
+void Player::addHealth(int i)
+{
+	health += i;
+}
+
+void Player::setHealth(int i)
+{
+	health = i;
+}
+
+int Player::getMaxHealth()
+{
+	return maxhealth;
+}
+
+void Player::addMaxHealth(int i)
+{
+	maxhealth += i;
+}
+
+void Player::setMaxHealth(int i)
+{
+	maxhealth = i;
+}
+
+int Player::getGold()
+{
+	return gold;
+}
+
+void Player::addGold(int i)
+{
+	gold += i;
+}
+
+void Player::setGold(int i)
+{
+	gold = i;
+}
+
+int Player::getXp()
+{
+	return xp;
+}
+
+void Player::addXp(int i)
+{
+	xp += i;
+}
+
+void Player::setXp(int i)
+{
+	xp = i;
+}

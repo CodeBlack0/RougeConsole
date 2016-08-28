@@ -19,6 +19,20 @@ public:
 	Coords *getPos();
 	void setPos(Coords newpos);
 
+	int getHealth();
+	void addHealth(int i);
+	void setHealth(int i);
+	int getMaxHealth();
+	void addMaxHealth(int i);
+	void setMaxHealth(int i);
+	int getGold();
+	void addGold(int i);
+	void setGold(int i);
+	int getXp();
+	void addXp(int i);
+	void setXp(int i);
+
+
 	Coords dir;
 
 private:
