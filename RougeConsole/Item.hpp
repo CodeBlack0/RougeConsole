@@ -14,7 +14,7 @@ public:
 	Item();
 	Item(std::string line);
 
-	void trigger(Player * p);
+	virtual void trigger(Player * p) { used = true; }
 
 	Coords * getPos();
 	char * getSym();

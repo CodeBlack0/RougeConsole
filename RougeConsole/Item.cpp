@@ -15,11 +15,6 @@ Item::Item(std::string line)
 	used = false;
 }
 
-void Item::trigger(Player * p)
-{
-	used = true;
-}
-
 Coords * Item::getPos()
 {
 	return &pos;
