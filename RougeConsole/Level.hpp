@@ -13,6 +13,7 @@
 #include "ItemList.hpp"
 #include "Utils.hpp"
 #include "Player.hpp"
+#include "Gold.hpp"
 
 class Level
 {

@@ -46,6 +46,9 @@ Level::Level(std::string path)
 		case 'I':
 			items.insert(new Item(it));
 			break;
+		case 'G':
+			items.insert(new Gold(it));
+			break;
 		default:
 			break;
 		}

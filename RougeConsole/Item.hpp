@@ -20,7 +20,7 @@ public:
 	char * getSym();
 
 
-private:
+protected:
 
 	bool used;
 

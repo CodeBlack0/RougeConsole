@@ -159,6 +159,7 @@
     <ClCompile Include="CharSet.cpp" />
     <ClCompile Include="Dungeon.cpp" />
     <ClCompile Include="Framework.cpp" />
+    <ClCompile Include="Gold.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="Itemlist.cpp" />
     <ClCompile Include="Level.cpp" />
@@ -174,6 +175,7 @@
     <ClInclude Include="Coords.hpp" />
     <ClInclude Include="Dungeon.hpp" />
     <ClInclude Include="Framework.hpp" />
+    <ClInclude Include="Gold.hpp" />
     <ClInclude Include="Item.hpp" />
     <ClInclude Include="Itemlist.hpp" />
     <ClInclude Include="Level.hpp" />
