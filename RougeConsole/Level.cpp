@@ -92,24 +92,43 @@ void Level::draw(WINDOW * screen)
 			switch (pixel)
 			{
 			case '#':
-				attron(A_NORMAL | COLOR_PAIR(6));
+				wattron(screen, A_NORMAL | COLOR_PAIR(6));
 				wprintw(screen, "%c", '#');
-				attroff(A_NORMAL | COLOR_PAIR(6));
+				wattroff(screen, A_NORMAL | COLOR_PAIR(6));
 				break;
 			case '.':
-				attron(A_DIM | COLOR_PAIR(5));
+				wattron(screen, A_DIM | COLOR_PAIR(5));
 				wprintw(screen, "%c", '.');
-				attroff(A_DIM | COLOR_PAIR(5));
+				wattroff(screen, A_DIM | COLOR_PAIR(5));
 				break;
-			case '~':
-				attron(A_DIM | COLOR_PAIR(4));
-				wprintw(screen, "%c", '~');
-				attroff(A_DIM | COLOR_PAIR(4));
+			case '$':
+				wattron(screen, A_DIM | COLOR_PAIR(2));
+				wprintw(screen, "%c", '$');
+				wattroff(screen, A_DIM | COLOR_PAIR(2));
+				break;
+			case 'O':
+				wattron(screen, A_DIM | COLOR_PAIR(3));
+				wprintw(screen, "%c", 'O');
+				wattroff(screen, A_DIM | COLOR_PAIR(3));
+				break;
+			case '%':
+			case '0':
+				wattron(screen, A_DIM | COLOR_PAIR(4));
+				wprintw(screen, "%c", pixel);
+				wattroff(screen, A_DIM | COLOR_PAIR(4));
+				break;
+			case '´':
+			case '`':
+			case 'x':
+			case 'X':
+				wattron(screen, A_DIM | COLOR_PAIR(7));
+				wprintw(screen, "%c", pixel);
+				wattroff(screen, A_DIM | COLOR_PAIR(7));
 				break;
 			case '@':
-				attron(A_BOLD | COLOR_PAIR(1));
+				wattron(screen, A_BOLD | COLOR_PAIR(1));
 				wprintw(screen, "%c", '@');
-				attroff(A_BOLD | COLOR_PAIR(1));
+				wattroff(screen, A_BOLD | COLOR_PAIR(1));
 				break;
 			case '|': case '-': case '+':
 				//wprintw(screen, " ");
